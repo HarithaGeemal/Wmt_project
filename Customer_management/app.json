@@ -1,0 +1,9 @@
+{
+  "name": "food_delivery_app",
+  "displayName": "food_delivery_app",
+  "extra": {
+    "eas": {
+      "projectId": "65c30625-6012-4465-8466-07454aafc44e"
+    }
+  }
+}
