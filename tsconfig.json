@@ -1,0 +1,30 @@
+{
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/*"
+      ],
+      "types": [
+        "jest"
+      ]
+    }
+  },
+  "include": [
+    "index.js",
+    "App.tsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/Pods",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+}
