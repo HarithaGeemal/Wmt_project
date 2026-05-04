@@ -23,6 +23,18 @@ const orderSchema = new mongoose.Schema(
     razorPayOrderId: { type: String },
     driverId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
     shopName: { type: String, default: '' },
+    
+    trackingDetails: {
+      acceptedAt: { type: Date },
+      deliveredAt: { type: Date },
+      cancelledAt: { type: Date },
+    },
+    
+    
+    specialInstructions: { type: String, default: '' },
+    
+   
+    orderSource: { type: String, enum: ['Mobile', 'Web'], default: 'Mobile' }
   },
   { timestamps: true }
 );
