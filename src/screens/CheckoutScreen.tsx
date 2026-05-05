@@ -16,6 +16,7 @@ import { fetchAddresses, createOrder, createStripePaymentIntent, fetchStripeConf
 import { useCartStore } from '../store/useCartStore';
 import { useStripe, StripeProvider } from '@stripe/stripe-react-native';
 import { Alert } from 'react-native';
+import { NotificationService } from '../utils/notificationService';
 
 const CheckoutContent = () => {
   const navigation = useNavigation();
@@ -109,6 +110,7 @@ const CheckoutContent = () => {
         });
         
         useCartStore.getState().clearCart();
+        NotificationService.showSuccess('Order Placed!', 'Your order has been successfully placed.');
         Alert.alert('Success', 'Order Placed Successfully!');
         navigation.navigate('MainTabs' as never);
 
@@ -120,6 +122,7 @@ const CheckoutContent = () => {
           addressId: displayAddress.id,
           paymentMethod: 'cash',
         });
+        NotificationService.showSuccess('Order Placed!', 'Your order has been successfully placed.');
         useCartStore.getState().clearCart();
         Alert.alert('Success', 'Order Placed Successfully!');
         navigation.navigate('MainTabs' as never);

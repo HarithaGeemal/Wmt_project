@@ -21,6 +21,7 @@ import {
 } from 'react-native-safe-area-context';
 import { verifyInstallation } from 'nativewind';
 import './global.css';
+import { NotificationCenter } from 'src/components/NotificationCenter';
 
 verifyInstallation();
 
@@ -43,6 +44,7 @@ function AppContent() {
     <QueryClientProvider client={queryClient}>
       <NavigationContainer ref={navigationRef} onReady={setIsNavigationReady}>
         <RootNavigator />
+        <NotificationCenter />
       </NavigationContainer>
     </QueryClientProvider>
   );

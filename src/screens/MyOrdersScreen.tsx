@@ -1,10 +1,12 @@
 import { View, Text, FlatList, ActivityIndicator, Pressable } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useQuery } from '@tanstack/react-query';
 import { fetchMyOrders } from '../api/apiClient';
 import Ionicons from '@react-native-vector-icons/ionicons';
 import { useNavigation } from '@react-navigation/native';
+import { NotificationService } from '../utils/notificationService';
+import { simulatePushNotifications } from '../utils/pushNotificationListener';
 
 const MyOrdersScreen = () => {
     const navigation = useNavigation();
@@ -12,6 +14,13 @@ const MyOrdersScreen = () => {
         queryKey: ['myOrders'],
         queryFn: fetchMyOrders,
     });
+
+    // Show notification when orders are loaded
+    useEffect(() => {
+        if (orders && orders.length > 0) {
+            NotificationService.showInfo('Orders Loaded', `You have ${orders.length} order(s)`);
+        }
+    }, [orders?.length]);
 
     const renderOrderItem = ({ item }: any) => {
         const statusStyle = () => {
@@ -64,6 +73,13 @@ const MyOrdersScreen = () => {
                 <Text className="flex-1 text-[18px] font-bold text-gray-900 text-center pr-8">
                     My Orders
                 </Text>
+                <Pressable 
+                    className="p-2"
+                    onPress={() => simulatePushNotifications()}
+                    hitSlop={8}
+                >
+                    <Ionicons name="notifications" size={22} color="#16a34a" />
+                </Pressable>
             </View>
 
             {isLoading ? (
